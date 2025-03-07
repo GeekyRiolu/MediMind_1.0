@@ -119,7 +119,8 @@ def main():
     task_options = [
         "Summarize Medical Text",
         "Write and Refine Research Article",
-        "Sanitize Medical Data (PHI)"
+        "Sanitize Medical Data (PHI)",
+        "Clinic Agent"
     ]
 
     # Use st.selectbox with a unique key
@@ -151,6 +152,8 @@ def main():
         write_and_refine_article_section(agent_manager)
     elif task == "Sanitize Medical Data (PHI)":
         sanitize_data_section(agent_manager)
+    elif task == "Clinic Agent": 
+        clinic_section(agent_manager)
 
     # Footer
     st.markdown("---")
@@ -355,6 +358,85 @@ def write_and_refine_article_section(agent_manager):
 
         **Q: Can I edit the output?**  
         A: Absolutely! The refined article is a starting point—feel free to make further edits.
+        """)
+
+def clinic_section(agent_manager):
+    st.header("🏥 Clinic Agent")
+    col1, col2 = st.columns([3, 2])
+
+    with col1:
+        ehr_data = st.text_area("Enter the patient's EHR data:", height=200, placeholder="Paste EHR data here...")
+        if st.button("Process EHR Data"):
+            if ehr_data:
+                clinic_agent = agent_manager.get_agent("clinic")
+                with st.spinner("Processing EHR data..."):
+                    try:
+                        result = clinic_agent.execute(ehr_data)
+                        st.success("Processing complete!")
+
+                        st.markdown("---")
+                        st.subheader("Sanitized Data:")
+                        st.write(result["sanitized_data"])
+
+                        st.markdown("---")
+                        st.subheader("Medical Advice:")
+                        st.write(result["medical_advice"])
+
+                        st.markdown("---")
+                        st.subheader("Summary:")
+                        st.write(result["summary"])
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+                        logger.error(f"ClinicAgent Error: {e}")
+            else:
+                st.warning("Please enter EHR data to process.")
+
+    with col2:
+        st.markdown("### 🧠 Example EHR Data")
+        example_ehr = """
+        Name: Maria Gonzalez
+
+        Age: 35
+
+        Gender: Female
+
+        History of Present Illness: Complaints of cough with green mucus for the past two weeks, no blood when coughing, headache, feeling thirsty, sore throat, history of tickle in throat progressing to deep cough
+        
+        Medications: Blood thinners for previous blood clot in left leg
+        
+        Immunizations: No flu shot yet, recommended to schedule for preventative measure
+        
+        Physical Exam: Mild pain on frontal sinuses palpation, midline uvula, no peritonsillar exudate, no cervical adenopathy, regular heart rate, no murmur or rubs, bilateral ronchi and expiratory wheezing on pulmonary exam
+        
+        Procedure: Prescribed albuterol inhaler for wheezing and guaifenesin for mucus, ordered chest X-ray to rule out pneumonia
+        Assessment and Plan: Likely viral bronchitis, hold off on antibiotics, monitor chest X-ray results for possible antibiotic prescription, supportive measures for cough, flu shot recommended, continue follow-up with hematologist for blood thinners
+        """
+        st.code(example_ehr, language="plaintext")
+
+        # Copy button for example EHR data
+        if st.button("Copy Example", key="copy_clinic_example"):
+            st.session_state.copied_clinic = True
+            st.write("✅ Copied to clipboard!")
+        else:
+            st.session_state.copied_clinic = False
+
+        st.markdown("### 📝 How It Works")
+        st.markdown("""
+        1. **Paste EHR Data**: Copy and paste the patient's EHR data into the text area.
+        2. **Click Process**: Click the **Process EHR Data** button to sanitize, analyze, and generate advice.
+        3. **Review Output**: Check the sanitized data, medical advice, and summary.
+        """)
+
+        st.markdown("### ❓ FAQs")
+        st.markdown("""
+        **Q: What kind of EHR data can I use?**  
+        A: You can use any structured or unstructured EHR data, such as patient history, diagnoses, or medications.
+
+        **Q: Is the data secure?**  
+        A: Yes, the data is sanitized to remove PHI before processing.
+
+        **Q: Can I use this for clinical decisions?**  
+        A: This tool is for informational purposes only. Always consult a healthcare professional for clinical decisions.
         """)
 
 def sanitize_data_section(agent_manager):
