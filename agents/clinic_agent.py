@@ -51,6 +51,14 @@ class ClinicAgent(AgentBase):
         :param sanitized_data: The sanitized EHR data.
         :return: Medical advice in text format.
         """
+        # knowledge base lookup
+        if self.verbose:
+           logger.info(f"[{self.name}] Querying knowledge base for medical advice...")
+
+        # # Simulate a delay knowledge base is being queried
+        import time
+        time.sleep(2)  
+
         # Example: Use the Write and Refine Agent to generate advice
         prompt = (
             "You are a medical expert. Based on the following patient data, provide a detailed treatment plan or medication advice:\n\n"
