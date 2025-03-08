@@ -146,8 +146,3 @@ For any questions or feedback, feel free to reach out:
 Enjoy using **MediMind**! 🚀
 
 ---
-
-### Notes:
-- Replace `app.py` with the actual entry point of your Flask application if it’s named differently.
-- Update the contact information and repository links as needed.
-- Add any additional sections (e.g., screenshots, demo videos) to make the README more engaging.
