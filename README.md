@@ -91,7 +91,7 @@ pip install -r requirements.txt
 Start the Flask application by running the following command:
 
 ```bash
-python app.py
+python flask_app.py
 ```
 
 Once the application is running, open your browser and navigate to:
@@ -107,7 +107,8 @@ Here’s an overview of the project structure:
 
 ```
 MediMind_1.0/
-├── app.py                  # Main Flask application
+├── app.py                  # Main Streamlit application
+├── flask_app.py            # Main Flask application
 ├── requirements.txt        # List of dependencies
 ├── README.md               # Project documentation
 ├── venv/                   # Virtual environment (ignored in .gitignore)
@@ -119,8 +120,8 @@ MediMind_1.0/
 ├── utils/                  # Utility functions and helpers
 │   ├── logger.py
 │   └── ...
-└── static/                 # Static files (CSS, JS, images)
-    ├── styles.css
+└── template/                 # Template files (CSS, JS, images)
+    ├── landing_page.html
     └── ...
 ```
 
@@ -132,11 +133,6 @@ We welcome contributions to MediMind! If you’d like to contribute, please foll
 2. Create a new branch for your feature or bugfix.
 3. Commit your changes and push them to your fork.
 4. Submit a pull request with a detailed description of your changes.
-
----
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
