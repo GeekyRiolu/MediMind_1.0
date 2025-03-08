@@ -8,6 +8,7 @@ from .refiner_agent import RefinerAgent
 from .validator_agent import ValidatorAgent
 from .clinic_agent import ClinicAgent
 from .follow_up_agent import FollowUpAgent
+from .generative_ai_manager import provide_medical_advice
 
 class AgentManager:
     def __init__(self, max_retries=2, verbose=True, agents=None):
