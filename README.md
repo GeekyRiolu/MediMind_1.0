@@ -23,12 +23,16 @@ MediMind is an AI-powered healthcare assistant designed to streamline medical ta
 
 ---
 
+
 ## Features
-- **Clinical Agent**: Process and analyze patient EHR data to provide medical advice and summaries.
-- **Summarize Medical Text**: Condense lengthy medical reports into concise summaries.
-- **Write and Refine Research Articles**: Generate and refine research articles on healthcare topics.
-- **Sanitize Medical Data (PHI)**: Remove or anonymize Protected Health Information (PHI) from medical data.
-- **Interactive UI**: A user-friendly interface powered by Flask and Streamlit.
+The **Clinic Agent** is the core feature of MediMind, designed to assist healthcare professionals in processing and analyzing patient EHR data. Here’s what it can do:
+
+- **Process EHR Data**: Analyze patient Electronic Health Records (EHR) to extract key insights.
+- **Generate Medical Advice**: Provide actionable medical advice based on the patient’s EHR data.
+- **Summarize Patient Data**: Create concise summaries of patient histories, diagnoses, and treatment plans.
+- **Sanitize PHI**: Remove or anonymize Protected Health Information (PHI) to ensure compliance with privacy regulations.
+- **Interactive Interface**: A user-friendly interface for healthcare professionals to interact with the Clinic Agent.
+
 
 ---
 
