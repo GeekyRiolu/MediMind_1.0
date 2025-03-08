@@ -1,1 +1,157 @@
-DOCUMENTATION
+
+
+---
+
+# MediMind - AI-Powered Clinic Assistant
+
+MediMind is an AI-powered healthcare assistant designed to streamline medical tasks such as processing patient EHR data, summarizing medical text, and generating medical advice. Built on a **Multi-Agent AI Architecture**, this application leverages advanced AI models to assist healthcare professionals.
+
+---
+
+## Table of Contents
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Setup Instructions](#setup-instructions)
+   - [Step 1: Clone the Repository](#step-1-clone-the-repository)
+   - [Step 2: Create a Virtual Environment](#step-2-create-a-virtual-environment)
+   - [Step 3: Activate the Virtual Environment](#step-3-activate-the-virtual-environment)
+   - [Step 4: Install Requirements](#step-4-install-requirements)
+   - [Step 5: Run the Flask Application](#step-5-run-the-flask-application)
+4. [Project Structure](#project-structure)
+5. [Contributing](#contributing)
+6. [License](#license)
+
+---
+
+## Features
+- **Clinical Agent**: Process and analyze patient EHR data to provide medical advice and summaries.
+- **Summarize Medical Text**: Condense lengthy medical reports into concise summaries.
+- **Write and Refine Research Articles**: Generate and refine research articles on healthcare topics.
+- **Sanitize Medical Data (PHI)**: Remove or anonymize Protected Health Information (PHI) from medical data.
+- **Interactive UI**: A user-friendly interface powered by Flask and Streamlit.
+
+---
+
+## Prerequisites
+Before you begin, ensure you have the following installed:
+- Python 3.8 or higher
+- `pip` (Python package manager)
+- Git (for cloning the repository)
+
+---
+
+## Setup Instructions
+
+### Step 1: Clone the Repository
+Clone the repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/GeekyRiolu/MediMind_1.0.git
+cd MediMind_1.0
+```
+
+---
+
+### Step 2: Create a Virtual Environment
+Create a virtual environment to isolate the project dependencies:
+
+```bash
+python -m venv venv
+```
+
+---
+
+### Step 3: Activate the Virtual Environment
+Activate the virtual environment:
+
+- **On Windows**:
+  ```bash
+  venv\Scripts\activate
+  ```
+
+- **On macOS/Linux**:
+  ```bash
+  source venv/bin/activate
+  ```
+
+Once activated, your terminal prompt should change to indicate the virtual environment is active.
+
+---
+
+### Step 4: Install Requirements
+Install the required Python packages using `pip`:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Step 5: Run the Flask Application
+Start the Flask application by running the following command:
+
+```bash
+python app.py
+```
+
+Once the application is running, open your browser and navigate to:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## Project Structure
+Here’s an overview of the project structure:
+
+```
+MediMind_1.0/
+├── app.py                  # Main Flask application
+├── requirements.txt        # List of dependencies
+├── README.md               # Project documentation
+├── venv/                   # Virtual environment (ignored in .gitignore)
+├── agents/                 # AI agents for various tasks
+│   ├── __init__.py
+│   ├── clinic_agent.py
+│   ├── follow_up_agent.py
+│   └── ...
+├── utils/                  # Utility functions and helpers
+│   ├── logger.py
+│   └── ...
+└── static/                 # Static files (CSS, JS, images)
+    ├── styles.css
+    └── ...
+```
+
+---
+
+## Contributing
+We welcome contributions to MediMind! If you’d like to contribute, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes and push them to your fork.
+4. Submit a pull request with a detailed description of your changes.
+
+---
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+For any questions or feedback, feel free to reach out:
+- **Email**: rishabh667788@gmail.com
+- **GitHub**: [GeekyRiolu](https://github.com/GeekyRiolu)
+
+---
+
+Enjoy using **MediMind**! 🚀
+
+---
+
+### Notes:
+- Replace `app.py` with the actual entry point of your Flask application if it’s named differently.
+- Update the contact information and repository links as needed.
+- Add any additional sections (e.g., screenshots, demo videos) to make the README more engaging.
