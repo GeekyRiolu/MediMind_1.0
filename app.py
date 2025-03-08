@@ -1,3 +1,5 @@
+# app.py
+
 import streamlit as st
 from agents import AgentManager
 from agents.follow_up_agent import FollowUpAgent
@@ -16,18 +18,45 @@ if "follow_up_questions" not in st.session_state:
 if "follow_up_query" not in st.session_state:
     st.session_state.follow_up_query = ""
 
-def handle_follow_up():
-    if st.session_state.follow_up_query:
-        try:
-            follow_up_agent = AgentManager.get_agent("follow_up")
-            st.session_state.follow_up_questions = follow_up_agent.execute(
-                query=st.session_state.follow_up_query,
-                context=st.session_state.follow_up_context
-            )
-            st.success("Follow-up questions generated!")
-        except Exception as e:
-            st.error(f"Error generating follow-up questions: {e}")
-            logger.error(f"FollowUpAgent Error: {e}")
+# Custom CSS for animated gradient background
+def set_animated_background():
+    st.markdown(
+        """
+        <style>
+            /* Apply animated gradient background */
+            .stApp {
+                background: linear-gradient(-45deg, #ffffff, #add8e6, #87ceeb, #add8e6);
+                background-size: 300% 300%;
+                animation: gradient 4s ease infinite;
+            }
+
+            /* Keyframes for gradient animation */
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            /* Ensure content is readable */
+            .main {
+                background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content */
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                position: relative; /* Ensure content is above the background */
+                z-index: 1;
+                color: white;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 def main():
     # Set page configuration
@@ -40,9 +69,9 @@ def main():
             "About": """
             ## MediMind  
             **Version**: 1.0  
-            **Developed by**: [Your Name]  
-            **Contact**: support@medimind.com  
-            **GitHub**: [MediMind Repo](https://github.com/your-repo/medimind)  
+            **Developed by**: Team MediMind
+            **Contact**: rishabh667788@gmail.com  
+            **GitHub**: [MediMind Repo](https://github.com/GeekyRiolu/MediMind_1.0)  
             """
         }
     )
@@ -91,16 +120,19 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
+    # Apply animated gradient background
+    set_animated_background()
+
     # Title and welcome message
-    st.title("MediMind - Multi-Agent AI System")
-    st.markdown("""
-    Welcome to **MediMind**! This application leverages advanced AI agents to perform tasks such as:
-    - Summarizing medical text
-    - Writing and refining research articles
-    - Sanitizing medical data (PHI)
-    
-    Select a task from the sidebar to get started.
+    st.title("🩺 MediMind - Clinical AI System")  
+    st.markdown("""  
+    Welcome to **MediMind **🤖 Clinical Agent****!  
+
+    - Process and analyze patient EHR data to provide medical advice and summaries.
+    - Based on Multi AI Agent Architecture.
+
     """)
+
 
     # Sidebar improvements
     st.sidebar.markdown("""
@@ -114,53 +146,49 @@ def main():
     # Task Selection
     st.sidebar.title("Task Selection")
     st.sidebar.markdown("Select a task from the list below to begin.")
-
-    # Define the task options
-    task_options = [
-        "Summarize Medical Text",
-        "Write and Refine Research Article",
-        "Sanitize Medical Data (PHI)",
-        "Clinic Agent"
-    ]
-
-    # Use st.selectbox with a unique key
     task = st.sidebar.selectbox(
         "Choose a task:",
-        options=task_options,
-        index=0,  # Default selection
-        key="task_selectbox",  # Unique key to prevent typing
-        format_func=lambda x: x,  # Display the task name as is
+        options=[
+            "Clinic Agent",
+            "Summarize Medical Text",
+            "Write and Refine Research Article",
+            "Sanitize Medical Data (PHI)"
+            
+        ],
+        index=0,
+        key="task_selectbox",
     )
 
     # Add additional sidebar links
     st.sidebar.markdown("---")
     st.sidebar.markdown("### 🔗 Quick Links")
     st.sidebar.markdown("""
-    - [Documentation](https://medimind-docs.com)
-    - [GitHub Repository](https://github.com/your-repo/medimind)
+    - [Documentation](https://github.com/GeekyRiolu/MediMind_1.0/blob/main/README.md)
+    - [GitHub Repository](https://github.com/GeekyRiolu/MediMind_1.0)
     - [Report a Bug](https://medimind-support.com/bug-report)
-    - [Contact Support](mailto:support@medimind.com)
+    - [Contact Support](mailto:rishabh667788@gmail.com)
     """)
 
     # Initialize AgentManager
     agent_manager = AgentManager(max_retries=2, verbose=True)
 
     # Task-specific sections
-    if task == "Summarize Medical Text":
+    if task == "Clinic Agent":
+        clinic_section(agent_manager)
+    elif task == "Summarize Medical Text":
         summarize_section(agent_manager)
     elif task == "Write and Refine Research Article":
         write_and_refine_article_section(agent_manager)
     elif task == "Sanitize Medical Data (PHI)":
         sanitize_data_section(agent_manager)
-    elif task == "Clinic Agent": 
-        clinic_section(agent_manager)
+
 
     # Footer
     st.markdown("---")
     st.markdown("""
     **MediMind**  
-    Developed by [Your Name] | Version 1.0  
-    [Contact Support](mailto:support@example.com)
+    Developed by Team MediMind | Version 1.0  
+    [Github](https://github.com/GeekyRiolu/MediMind_1.0)
     """)
 
 def follow_up_section(agent_manager, context):
@@ -395,19 +423,12 @@ def clinic_section(agent_manager):
         st.markdown("### 🧠 Example EHR Data")
         example_ehr = """
         Name: Maria Gonzalez
-
         Age: 35
-
         Gender: Female
-
         History of Present Illness: Complaints of cough with green mucus for the past two weeks, no blood when coughing, headache, feeling thirsty, sore throat, history of tickle in throat progressing to deep cough
-        
         Medications: Blood thinners for previous blood clot in left leg
-        
         Immunizations: No flu shot yet, recommended to schedule for preventative measure
-        
         Physical Exam: Mild pain on frontal sinuses palpation, midline uvula, no peritonsillar exudate, no cervical adenopathy, regular heart rate, no murmur or rubs, bilateral ronchi and expiratory wheezing on pulmonary exam
-        
         Procedure: Prescribed albuterol inhaler for wheezing and guaifenesin for mucus, ordered chest X-ray to rule out pneumonia
         Assessment and Plan: Likely viral bronchitis, hold off on antibiotics, monitor chest X-ray results for possible antibiotic prescription, supportive measures for cough, flu shot recommended, continue follow-up with hematologist for blood thinners
         """
@@ -436,7 +457,7 @@ def clinic_section(agent_manager):
         A: Yes, the data is sanitized to remove PHI before processing.
 
         **Q: Can I use this for clinical decisions?**  
-        A: This tool is for informational purposes only. Always consult a healthcare professional for clinical decisions.
+        A: This tool is designed for informational purposes only. Always consult a healthcare professional for clinical decisions.
         """)
 
 def sanitize_data_section(agent_manager):
