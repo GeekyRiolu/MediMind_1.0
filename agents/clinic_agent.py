@@ -5,7 +5,8 @@ from .sanitize_data_tool import SanitizeDataTool
 from .write_article_tool import WriteArticleTool
 from .summarize_tool import SummarizeTool
 from loguru import logger
-
+import logging
+logger = logging.getLogger(__name__)
 class ClinicAgent(AgentBase):
     def __init__(self, max_retries=2, verbose=True):
         super().__init__(name="ClinicAgent", max_retries=max_retries, verbose=verbose)

@@ -2,8 +2,9 @@
 
 import streamlit as st
 from agents import AgentManager
+from agents.__init__ import AgentManager
 from agents.follow_up_agent import FollowUpAgent
-from utils.logger import logger
+from loguru import logger
 import os
 from dotenv import load_dotenv
 
