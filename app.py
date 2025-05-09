@@ -318,7 +318,7 @@ def write_and_refine_article_section(agent_manager):
                         
                         st.markdown("---")
                         st.subheader("Draft Article:")
-                        st.write(draft)
+                        st.write(draft.content)
                     except Exception as e:
                         st.error(f"Error: {e}")
                         logger.error(f"WriteArticleAgent Error: {e}")
@@ -331,7 +331,7 @@ def write_and_refine_article_section(agent_manager):
                         
                         st.markdown("---")
                         st.subheader("Refined Article:")
-                        st.write(refined_article)
+                        st.write(refined_article.content)
                     except Exception as e:
                         st.error(f"Refinement Error: {e}")
                         logger.error(f"RefinerAgent Error: {e}")
@@ -341,7 +341,7 @@ def write_and_refine_article_section(agent_manager):
                     try:
                         validation = validator_agent.execute(topic=topic, article=refined_article)
                         with st.expander("View Validation Details"):
-                            st.write(validation)
+                            st.write(validation.content)
                     except Exception as e:
                         st.error(f"Validation Error: {e}")
                         logger.error(f"ValidatorAgent Error: {e}")
@@ -404,15 +404,15 @@ def clinic_section(agent_manager):
 
                         st.markdown("---")
                         st.subheader("Sanitized Data:")
-                        st.write(result["sanitized_data"])
+                        st.write(result["sanitized_data"].content)
 
                         st.markdown("---")
                         st.subheader("Medical Advice:")
-                        st.write(result["medical_advice"])
+                        st.write(result["medical_advice"].content)
 
                         st.markdown("---")
                         st.subheader("Summary:")
-                        st.write(result["summary"])
+                        st.write(result["summary"].content)
                     except Exception as e:
                         st.error(f"Error: {e}")
                         logger.error(f"ClinicAgent Error: {e}")
@@ -477,7 +477,7 @@ def sanitize_data_section(agent_manager):
                         
                         st.markdown("---")
                         st.subheader("Sanitized Data:")
-                        st.write(sanitized_data)
+                        st.write(sanitized_data.content)
                     except Exception as e:
                         st.error(f"Error: {e}")
                         logger.error(f"SanitizeDataAgent Error: {e}")
@@ -487,7 +487,7 @@ def sanitize_data_section(agent_manager):
                     try:
                         validation = validator_agent.execute(original_data=medical_data, sanitized_data=sanitized_data)
                         with st.expander("View Validation Details"):
-                            st.write(validation)
+                            st.write(validation.content)
                     except Exception as e:
                         st.error(f"Validation Error: {e}")
                         logger.error(f"SanitizeDataValidatorAgent Error: {e}")
