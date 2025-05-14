@@ -106,18 +106,7 @@ def main():
     div[data-baseweb="menu"] > div > div {
         cursor: pointer;
     }
-        /* Style for copy button */
-        .copy-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .copy-button.copied {
-            background-color: #45a049;
-        }
+        
     </style>
     """, unsafe_allow_html=True)
 
@@ -274,13 +263,6 @@ def summarize_section(agent_manager):
         """
         st.code(example_text, language="plaintext")
 
-        # Copy button for example text
-        if st.button("Copy Example", key="copy_summarize_example"):
-            st.session_state.copied_summarize = True
-            st.write("✅ Copied to clipboard!")
-        else:
-            st.session_state.copied_summarize = False
-
         st.markdown("### 📝 Tips for Summarization")
         st.markdown("""
         - Ensure the text is clear and concise.
@@ -363,13 +345,6 @@ def write_and_refine_article_section(agent_manager):
         """
         st.code(example_topics, language="plaintext")
 
-        # Copy button for example topics
-        if st.button("Copy Example", key="copy_write_example"):
-            st.session_state.copied_write = True
-            st.write("✅ Copied to clipboard!")
-        else:
-            st.session_state.copied_write = False
-
         st.markdown("### 📝 Tips for Writing")
         st.markdown("""
         - Be specific about the topic.
@@ -434,13 +409,6 @@ def clinic_section(agent_manager):
         Assessment and Plan: Likely viral bronchitis, hold off on antibiotics, monitor chest X-ray results for possible antibiotic prescription, supportive measures for cough, flu shot recommended, continue follow-up with hematologist for blood thinners
         """
         st.code(example_ehr, language="plaintext")
-
-        # Copy button for example EHR data
-        if st.button("Copy Example", key="copy_clinic_example"):
-            st.session_state.copied_clinic = True
-            st.write("✅ Copied to clipboard!")
-        else:
-            st.session_state.copied_clinic = False
 
         st.markdown("### 📝 How It Works")
         st.markdown("""
@@ -513,12 +481,6 @@ def sanitize_data_section(agent_manager):
         """
         st.code(example_data, language="plaintext")
 
-        # Copy button for example data
-        if st.button("Copy Example", key="copy_sanitize_example"):
-            st.session_state.copied_sanitize = True
-            st.write("✅ Copied to clipboard!")
-        else:
-            st.session_state.copied_sanitize = False
 
         st.markdown("### 📝 Step-by-Step Instructions")
         st.markdown("""
