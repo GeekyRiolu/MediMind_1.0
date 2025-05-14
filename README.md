@@ -91,13 +91,16 @@ pip install -r requirements.txt
 
 ---
 
-### Step 5: Run the Flask Application
-Start the Flask application by running the following command:
+### Step 5: Run the Application
+Start the FastAPI application by running the following command: (landing page)
 
 ```bash
-python flask_app.py
+uvicorn fastapi_app:app --reload 
 ```
-
+For Running Chatbot UI directly
+```bash
+streamlit run app.py
+```
 Once the application is running, open your browser and navigate to:
 
 ```
