@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    command: uvicorn fastapi_app:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+
+  ui:
+    build: .
+    ports:
+      - "5000:5000"
+    command: streamlit run ui/app.py --server.port=5000 --server.address=0.0.0.0
+    volumes:
+      - .:/app

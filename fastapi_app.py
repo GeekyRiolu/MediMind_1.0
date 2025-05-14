@@ -112,7 +112,8 @@ templates = Jinja2Templates(directory="templates")
 # Function to start the Streamlit app
 def start_streamlit():
     time.sleep(2)  # Simulate a delay for Streamlit to load
-    subprocess.run(["streamlit", "run", "app.py"])
+    subprocess.run(["streamlit", "run", "app.py", "--server.address=0.0.0.0"])
+
 
 @app.get("/", response_class=HTMLResponse)
 async def landing_page(request: Request):
@@ -150,4 +151,4 @@ async def chatbot():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=5000)
+    1uvicorn.run(app, host="0.0.0.0", port=8000)
