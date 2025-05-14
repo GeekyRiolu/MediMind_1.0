@@ -95,17 +95,25 @@ pip install -r requirements.txt
 Start the FastAPI application by running the following command: (landing page)
 
 ```bash
+cd MediMind_1.0
 uvicorn fastapi_app:app --reload 
 ```
-For Running Chatbot UI directly
+For Running Chatbot UI directly:
+
 ```bash
 streamlit run app.py
 ```
-Once the application is running, open your browser and navigate to:
 
+Run the dockerized app:
+
+```bash
+docker build -t medimind-app .
+docker run -p 8001:8000 -p 8501:8501 medimind-app
 ```
-http://127.0.0.1:5000
-```
+
+Visit in your browser:
+- FastAPI Landing Page: http://localhost:8000 (It automatically redirects to 8501 port)
+- Chatbot Interface: http://localhost:8501
 
 ---
 
